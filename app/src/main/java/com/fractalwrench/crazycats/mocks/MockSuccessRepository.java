@@ -7,10 +7,11 @@ import com.fractalwrench.crazycats.image.data.ImageDetail;
 import com.fractalwrench.crazycats.image.data.ImageSummary;
 import com.fractalwrench.crazycats.injection.DefaultSchedulers;
 import com.fractalwrench.crazycats.resource.JsonResourceReader;
+import com.fractalwrench.crazycats.resource.ResourcePaths;
 import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -21,20 +22,22 @@ import io.reactivex.Observable;
 public class MockSuccessRepository implements ImageDataRepository {
 
     private final DefaultSchedulers schedulers;
-    private final com.fractalwrench.crazycats.image.data.ImageDetail imageDetail = new ImageDetail();
-    private final List<ImageSummary> summaryList = new ArrayList<>();
+    private final com.fractalwrench.crazycats.image.data.ImageDetail imageDetail;
+    private final List<ImageSummary> summaryList;
 
     public MockSuccessRepository(DefaultSchedulers schedulers) throws IOException {
         this.schedulers = schedulers;
         Moshi moshi = new Moshi.Builder().build();
-        JsonResourceReader<ImageDetail> detailReader = new JsonResourceReader<>(moshi,
-                                                                                ImageDetail.class);
-//        JsonResourceReader<ImageSummaryWrapper> listReader = new JsonResourceReader<>(moshi,
-//                                                                                      ImageSummaryWrapper.class);
-//
-//        imageDetail = detailReader.readResourceAsJson(ResourcePaths.Image_DETAIL);
-//        ImageSummaryWrapper wrapper = listReader.readResourceAsJson(ResourcePaths.Image_SEARCH);
-//        summaryList = wrapper.getResults();
+
+        JsonResourceReader<ImageSummary> summaryReader
+                = new JsonResourceReader<>(moshi, ImageSummary.class);
+
+        JsonResourceReader<ImageDetail> detailReader
+                = new JsonResourceReader<>(moshi, ImageDetail.class);
+
+        ImageSummary summary = summaryReader.readResourceAsJson(ResourcePaths.IMAGE_SUMMARY);
+        summaryList = Collections.singletonList(summary);
+        imageDetail = detailReader.readResourceAsJson(ResourcePaths.IMAGE_DETAIL);
     }
 
     @Override
