@@ -15,10 +15,9 @@ public interface ImageDataRepository {
     /**
      * Fetches a {@link List} of {@link ImageSummary} which match the given search term
      *
-     * @param searchTerm must be non-null
      * @return an observable which will complete on fetching any matching images
      */
-    Observable<List<ImageSummary>> fetchImageSummaries(@NonNull String searchTerm);
+    Observable<List<ImageSummary>> fetchImageSummaries();
 
     /**
      * Fetches a {@link ImageDetail} by its id

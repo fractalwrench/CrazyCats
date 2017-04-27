@@ -28,7 +28,7 @@ public class DataModule {
     ImageDataRepository repository() {
         return new ImageDataRepository() {
             @Override
-            public Observable<List<ImageSummary>> fetchImageSummaries(@NonNull String searchTerm) {
+            public Observable<List<ImageSummary>> fetchImageSummaries() {
                 return Observable.just(new ArrayList<>());
             }
 

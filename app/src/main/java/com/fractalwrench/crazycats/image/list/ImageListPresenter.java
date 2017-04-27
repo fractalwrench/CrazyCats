@@ -49,7 +49,7 @@ public class ImageListPresenter extends Presenter<ImageListView> implements Imag
 
     private void fetchImageSuggestions() {
         contentView.showProgress();
-        compositeDisposable.add(repository.fetchImageSummaries(searchTerm)
+        compositeDisposable.add(repository.fetchImageSummaries()
                                           .subscribe(this::handleImageFetchSuccess,
                                                           this::handleImageFetchFailure));
     }
