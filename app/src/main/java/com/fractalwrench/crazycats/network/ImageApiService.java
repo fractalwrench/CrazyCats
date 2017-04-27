@@ -1,3 +1,3 @@
 package com.fractalwrench.crazycats.network;
 
-public interface CatApiService {}
+public interface ImageApiService {}
