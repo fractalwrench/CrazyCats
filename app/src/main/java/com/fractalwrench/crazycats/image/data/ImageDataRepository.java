@@ -1,4 +1,4 @@
-package com.fractalwrench.crazycats.data;
+package com.fractalwrench.crazycats.image.data;
 
 import android.support.annotation.NonNull;
 

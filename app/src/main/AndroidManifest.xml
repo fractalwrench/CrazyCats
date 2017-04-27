@@ -13,9 +13,9 @@
         android:theme="@style/AppTheme"
         >
         <activity
-            android:name=".ItemListActivity"
+            android:name=".image.list.ImageListActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,14 +24,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ItemDetailActivity"
+            android:name=".image.detail.ImageDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".ItemListActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".image.list.ImageListActivity"
+            android:theme="@style/AppTheme"
             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.fractalwrench.crazycats.ItemListActivity"
+                android:value="com.fractalwrench.crazycats.image.list.ImageListActivity"
                 />
         </activity>
     </application>

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 
+import com.fractalwrench.crazycats.data.DataModule;
 import com.fractalwrench.crazycats.injection.app.AppComponent;
 import com.fractalwrench.crazycats.injection.app.AppModule;
 import com.fractalwrench.crazycats.injection.app.DaggerAppComponent;
@@ -48,6 +49,7 @@ public class CrazyCatsApp extends Application {
                                          .appModule(new AppModule(this))
                                          .networkModule(new NetworkModule(BuildConfig.DEBUG))
                                          .schedulerModule(new SchedulerModule())
+                                         .dataModule(new DataModule())
                                          .build();
     }
 
