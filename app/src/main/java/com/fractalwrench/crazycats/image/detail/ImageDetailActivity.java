@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -50,7 +48,6 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
         super.onCreate(savedInstanceState);
         imageDetailComponent = getAppComponent().plus(new ImageDetailModule());
         imageDetailComponent.inject(this);
-        displayBackArrow();
     }
 
     @Override
@@ -71,22 +68,6 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
     protected void onStop() {
         super.onStop();
         presenter.stop();
-    }
-
-    private void displayBackArrow() {
-        ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (android.R.id.home == item.getItemId()) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
 
