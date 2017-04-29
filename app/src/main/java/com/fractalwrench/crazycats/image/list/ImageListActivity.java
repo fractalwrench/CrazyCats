@@ -29,7 +29,6 @@ public class ImageListActivity extends BaseActivity implements ImageListView {
     @Inject ImageListPresenter presenter;
     @Inject RecyclerView.LayoutManager layoutManager;
     @Inject ImageListAdapter imageListAdapter;
-    @Inject RecyclerView.ItemDecoration itemDecoration;
 
     @BindView(R.id.image_list_root) ViewFlipper viewFlipper;
     @BindView(R.id.image_list_content) RecyclerView contentView;
@@ -48,10 +47,9 @@ public class ImageListActivity extends BaseActivity implements ImageListView {
         super.onCreate(savedInstanceState);
         imageListComponent = getAppComponent().plus(new ImageListModule(this));
         imageListComponent.inject(this);
-
+        
         contentView.setLayoutManager(layoutManager);
         contentView.setAdapter(imageListAdapter);
-        contentView.addItemDecoration(itemDecoration);
     }
 
     @Override

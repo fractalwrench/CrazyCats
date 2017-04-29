@@ -47,7 +47,9 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListViewHolder> 
     public void onBindViewHolder(ImageListViewHolder holder, int position) {
         ImageData imageData = items.get(position);
         Context context = holder.itemView.getContext();
+
         holder.itemView.setTag(position);
+        holder.titleView.setText(imageData.getTitle());
 
         Picasso.with(context)
                 .setLoggingEnabled(true);

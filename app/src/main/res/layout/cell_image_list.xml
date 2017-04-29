@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:background="?android:selectableItemBackground"
-              android:clickable="true"
-              android:focusable="true"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="?android:selectableItemBackground"
+             android:clickable="true"
+             android:focusable="true"
     >
-
-    <TextView
-        android:id="@+id/image_summary_cell_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Little Nicky"
-        style="@style/TextAppearance.AppCompat.Title"
-        />
-
-    <TextView
-        android:id="@+id/image_summary_cell_year"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="2000"
-        style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
-        />
 
     <ImageView
         android:id="@+id/image_summary_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        tools:src="@drawable/leak_canary_icon"
+        />
+
+    <TextView
+        android:id="@+id/image_summary_cell_title"
+        style="@style/TextAppearance.AppCompat.Medium.Inverse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#88000000"
+        android:ellipsize="end"
+        android:gravity="start"
+        android:maxLines="2"
+        android:minLines="2"
+        android:padding="24dp"
+        android:textColor="@android:color/white"
+        tools:text="Little Nicky test blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah"
         />
 
 </FrameLayout>

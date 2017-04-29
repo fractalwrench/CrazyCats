@@ -3,9 +3,9 @@ package com.fractalwrench.crazycats.network.responses;
 import java.util.Collections;
 import java.util.List;
 
-import static com.fractalwrench.crazycats.image.data.ImageData.THUMBNAIL_SIZE_THRESHOLD;
-
 public class SubredditThreadResponse {
+
+    private static final int THUMBNAIL_SIZE_THRESHOLD = 300;
 
     private String id;
     private String url;
@@ -68,8 +68,7 @@ public class SubredditThreadResponse {
 
             for (ImageResponse resolution : resolutions) {
                 if (resolution.getWidth() >= THUMBNAIL_SIZE_THRESHOLD) {
-                    url = url.replaceAll("&amp;", "&");
-                    break;
+                    return resolution.getUrl().replaceAll("&amp;", "&");
                 }
             }
         }

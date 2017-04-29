@@ -1,7 +1,6 @@
 package com.fractalwrench.crazycats.image.list;
 
 import android.content.Context;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -22,11 +21,6 @@ public class ImageListModule {
     @Provides
     ImageListPresenter imageListPresenter(ImageDataRepository repository) {
         return new ImageListPresenter(repository);
-    }
-
-    @Provides
-    RecyclerView.ItemDecoration providesRecyclerViewDecoration() {
-        return new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
     }
 
     @Provides

@@ -8,7 +8,6 @@ public class ImageData {
 
     public static final Comparator<ImageData> COMPARATOR
             = (lhs, rhs) -> lhs.getTitle().compareTo(rhs.getTitle());
-    public static final int THUMBNAIL_SIZE_THRESHOLD = 350;
 
     private String id;
     private String imageUrl;
