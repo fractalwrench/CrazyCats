@@ -13,18 +13,18 @@ import io.reactivex.Observable;
 public interface ImageDataRepository {
 
     /**
-     * Fetches a {@link List} of {@link ImageSummary} which match the given search term
+     * Fetches a {@link List} of {@link ImageData} which match the given search term
      *
      * @return an observable which will complete on fetching any matching images
      */
-    Observable<List<ImageSummary>> fetchImageSummaries();
+    Observable<List<ImageData>> fetchImageSummaries();
 
     /**
-     * Fetches a {@link ImageDetail} by its id
+     * Fetches a {@link ImageData} by its id
      *
      * @param id must be non-null
      * @return an observable which will complete on fetching the image (if it exists)
      */
-    Observable<ImageDetail> fetchImageById(@NonNull String id);
+    Observable<ImageData> fetchImageById(@NonNull String id);
 
 }

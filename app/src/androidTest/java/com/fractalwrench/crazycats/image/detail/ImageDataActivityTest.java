@@ -5,7 +5,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.fractalwrench.crazycats.R;
-import com.fractalwrench.crazycats.image.data.ImageDetail;
+import com.fractalwrench.crazycats.image.data.ImageData;
 import com.fractalwrench.crazycats.mocks.MockSuccessRepository;
 import com.fractalwrench.crazycats.mocks.TestDependencies;
 
@@ -31,13 +31,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class ImageDetailActivityTest {
+public class ImageDataActivityTest {
 
     @Rule public ActivityTestRule<ImageDetailActivity> rule = new ActivityTestRule<>(
             ImageDetailActivity.class, true, true);
 
     private ImageDetailActivity activity;
-    private ImageDetail imageDetail;
+    private ImageData imageData;
 
     @Before
     public void setUp() throws Exception {
@@ -45,7 +45,7 @@ public class ImageDetailActivityTest {
         MockSuccessRepository repository = TestDependencies.mockSuccessRepository();
 
         repository.fetchImageById("").subscribe(ImageDetail -> {
-            this.imageDetail = ImageDetail;
+            this.imageData = ImageDetail;
         });
     }
 
@@ -79,7 +79,7 @@ public class ImageDetailActivityTest {
     public void testContentDisplays() throws Throwable {
         rule.runOnUiThread(() -> {
             activity.showProgress();
-            activity.showContent(imageDetail);
+            activity.showContent(imageData);
         });
         onView(withId(R.id.image_detail_content)).check(matches(isDisplayed()));
 

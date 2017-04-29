@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fractalwrench.crazycats.R;
-import com.fractalwrench.crazycats.image.data.ImageSummary;
+import com.fractalwrench.crazycats.image.data.ImageData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
 public class ImageListAdapter extends RecyclerView.Adapter<ImageListViewHolder> implements
                                                                                 View.OnClickListener {
 
-    private final List<ImageSummary> items;
+    private final List<ImageData> items;
     private LayoutInflater inflater;
     private ImageListView.CellDelegate delegate;
 
@@ -23,7 +23,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListViewHolder> 
         this.items = new ArrayList<>();
     }
 
-    void updateImages(List<ImageSummary> content) {
+    void updateImages(List<ImageData> content) {
         items.clear();
         items.addAll(content);
         notifyDataSetChanged();
@@ -43,7 +43,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListViewHolder> 
 
     @Override
     public void onBindViewHolder(ImageListViewHolder holder, int position) {
-        ImageSummary imageSummary = items.get(position);
+        ImageData imageData = items.get(position);
         holder.itemView.setTag(position);
     }
 
@@ -64,10 +64,10 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListViewHolder> 
             int position = (int) view.getTag();
 
             if (position < items.size()) {
-                ImageSummary ImageSummary = items.get(position);
+                ImageData imageData = items.get(position);
 
                 if (delegate != null) {
-                    delegate.onImageCellClicked(ImageSummary);
+                    delegate.onImageCellClicked(imageData);
                     return;
                 }
             }

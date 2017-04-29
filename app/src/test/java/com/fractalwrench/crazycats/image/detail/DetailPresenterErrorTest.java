@@ -34,11 +34,11 @@ public class DetailPresenterErrorTest {
      */
     @Test
     public void checkPostDetailFailure() {
-        assertNull(detailView.imageDetail);
+        assertNull(detailView.imageData);
         assertNull(detailView.errorMessage);
 
         presenter.start(detailView);
-        assertNull(detailView.imageDetail);
+        assertNull(detailView.imageData);
         assertNotNull(detailView.errorMessage);
     }
 

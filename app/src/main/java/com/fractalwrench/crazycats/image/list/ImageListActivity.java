@@ -10,7 +10,7 @@ import android.widget.ViewFlipper;
 
 import com.fractalwrench.crazycats.BaseActivity;
 import com.fractalwrench.crazycats.R;
-import com.fractalwrench.crazycats.image.data.ImageSummary;
+import com.fractalwrench.crazycats.image.data.ImageData;
 import com.fractalwrench.crazycats.image.detail.ImageDetailActivity;
 
 import java.util.List;
@@ -90,7 +90,7 @@ public class ImageListActivity extends BaseActivity implements ImageListView {
     }
 
     @Override
-    public void showContent(@NonNull List<ImageSummary> content) {
+    public void showContent(@NonNull List<ImageData> content) {
         viewFlipper.setDisplayedChild(VIEW_CONTENT);
         imageListAdapter.updateImages(content);
         imageListAdapter.notifyDataSetChanged();
@@ -103,7 +103,7 @@ public class ImageListActivity extends BaseActivity implements ImageListView {
     }
 
     @Override
-    public void showImageDetail(ImageSummary ImageSummary) {
-        startActivity(ImageDetailActivity.getIntent(this, ImageSummary));
+    public void showImageDetail(ImageData imageData) {
+        startActivity(ImageDetailActivity.getIntent(this, imageData));
     }
 }

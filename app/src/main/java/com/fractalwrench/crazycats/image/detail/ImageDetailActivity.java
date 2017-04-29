@@ -10,8 +10,7 @@ import android.widget.ViewFlipper;
 
 import com.fractalwrench.crazycats.BaseActivity;
 import com.fractalwrench.crazycats.R;
-import com.fractalwrench.crazycats.image.data.ImageDetail;
-import com.fractalwrench.crazycats.image.data.ImageSummary;
+import com.fractalwrench.crazycats.image.data.ImageData;
 
 import javax.inject.Inject;
 
@@ -32,9 +31,9 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
     @BindView(R.id.image_detail_err) TextView errorView;
     @BindView(R.id.image_detail_content) View contentView;
 
-    public static Intent getIntent(Context context, ImageSummary imageSummary) {
+    public static Intent getIntent(Context context, ImageData imageData) {
         Intent intent = new Intent(context, ImageDetailActivity.class);
-        intent.putExtra(KEY_IMAGE_ID, imageSummary.getId());
+        intent.putExtra(KEY_IMAGE_ID, imageData.getId());
         return intent;
     }
 
@@ -80,7 +79,7 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
     }
 
     @Override
-    public void showContent(@NonNull ImageDetail imageDetail) {
+    public void showContent(@NonNull ImageData imageData) {
         viewFlipper.setDisplayedChild(VIEW_CONTENT);
     }
 

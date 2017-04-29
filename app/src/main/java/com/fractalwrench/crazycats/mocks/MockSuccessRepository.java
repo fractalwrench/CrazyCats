@@ -2,8 +2,8 @@ package com.fractalwrench.crazycats.mocks;
 
 import android.support.annotation.NonNull;
 
+import com.fractalwrench.crazycats.image.data.ImageData;
 import com.fractalwrench.crazycats.image.data.ImageDataRepository;
-import com.fractalwrench.crazycats.image.data.ImageDetail;
 import com.fractalwrench.crazycats.image.data.ImageSummary;
 import com.fractalwrench.crazycats.injection.DefaultSchedulers;
 import com.fractalwrench.crazycats.resource.JsonResourceReader;
@@ -22,7 +22,7 @@ import io.reactivex.Observable;
 public class MockSuccessRepository implements ImageDataRepository {
 
     private final DefaultSchedulers schedulers;
-    private final com.fractalwrench.crazycats.image.data.ImageDetail imageDetail;
+    private final ImageData imageData;
     private final List<ImageSummary> summaryList;
 
     public MockSuccessRepository(DefaultSchedulers schedulers) throws IOException {
@@ -32,12 +32,12 @@ public class MockSuccessRepository implements ImageDataRepository {
         JsonResourceReader<ImageSummary> summaryReader
                 = new JsonResourceReader<>(moshi, ImageSummary.class);
 
-        JsonResourceReader<ImageDetail> detailReader
-                = new JsonResourceReader<>(moshi, ImageDetail.class);
+        JsonResourceReader<ImageData> detailReader
+                = new JsonResourceReader<>(moshi, ImageData.class);
 
         ImageSummary summary = summaryReader.readResourceAsJson(ResourcePaths.IMAGE_SUMMARY);
         summaryList = Collections.singletonList(summary);
-        imageDetail = detailReader.readResourceAsJson(ResourcePaths.IMAGE_DETAIL);
+        imageData = detailReader.readResourceAsJson(ResourcePaths.IMAGE_DETAIL);
     }
 
     @Override
@@ -47,8 +47,8 @@ public class MockSuccessRepository implements ImageDataRepository {
     }
 
     @Override
-    public Observable<ImageDetail> fetchImageById(@NonNull String id) {
-        return Observable.just(imageDetail)
+    public Observable<ImageData> fetchImageById(@NonNull String id) {
+        return Observable.just(imageData)
                          .compose(schedulers::apply);
     }
 

@@ -22,7 +22,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class ImageDetailSmokeTest {
+public class ImageDataSmokeTest {
 
     @Rule public ActivityTestRule<ImageDetailActivity> rule = new ActivityTestRule<>(
             ImageDetailActivity.class, true, true);

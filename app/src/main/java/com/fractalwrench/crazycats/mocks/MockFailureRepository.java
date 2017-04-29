@@ -3,7 +3,7 @@ package com.fractalwrench.crazycats.mocks;
 import android.support.annotation.NonNull;
 
 import com.fractalwrench.crazycats.image.data.ImageDataRepository;
-import com.fractalwrench.crazycats.image.data.ImageDetail;
+import com.fractalwrench.crazycats.image.data.ImageData;
 import com.fractalwrench.crazycats.image.data.ImageSummary;
 import com.fractalwrench.crazycats.injection.DefaultSchedulers;
 
@@ -25,7 +25,7 @@ public class MockFailureRepository implements ImageDataRepository {
     }
 
     @Override
-    public Observable<ImageDetail> fetchImageById(@NonNull String id) {
+    public Observable<ImageData> fetchImageById(@NonNull String id) {
         return Observable.error(new RuntimeException());
     }
 
