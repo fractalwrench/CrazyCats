@@ -35,8 +35,8 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    ImageApiService omdbApiService(Context context, DefaultSchedulers defaultSchedulers,
-                                   OkHttpClient okHttpClient) {
+    RedditApiService omdbApiService(Context context, DefaultSchedulers defaultSchedulers,
+                                    OkHttpClient okHttpClient) {
         String baseUrl = context.getString(R.string.base_api_url);
         RxJava2CallAdapterFactory factory = RxJava2CallAdapterFactory.createWithScheduler(
                 defaultSchedulers.io());
@@ -48,7 +48,7 @@ public class NetworkModule {
                                                   .addCallAdapterFactory(factory)
                                                   .build();
 
-        return retrofit.create(ImageApiService.class);
+        return retrofit.create(RedditApiService.class);
     }
 
     @Provides

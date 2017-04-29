@@ -19,13 +19,13 @@ public class SubredditListingResponse {
     }
 
     public static class ListingChildren {
-        private List<SubredditThreadResponse> data;
+        private SubredditThreadResponse data;
 
-        public List<SubredditThreadResponse> getData() {
+        public SubredditThreadResponse getData() {
             return data;
         }
 
-        public void setData(List<SubredditThreadResponse> data) {
+        public void setData(SubredditThreadResponse data) {
             this.data = data;
         }
     }

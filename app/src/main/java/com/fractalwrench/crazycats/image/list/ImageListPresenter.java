@@ -1,6 +1,7 @@
 package com.fractalwrench.crazycats.image.list;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.fractalwrench.crazycats.common.TextUtils;
 import com.fractalwrench.crazycats.image.Presenter;
@@ -65,6 +66,7 @@ public class ImageListPresenter extends Presenter<ImageListView> implements Imag
     }
 
     private void handleImageFetchFailure(Throwable throwable) {
+        Log.e(getClass().getName(), "Failed to fetch image", throwable);
         // TODO would change message (and localise) depending on error condition in prod app
         contentView.showError("Failed to fetch Image list. Please check your connection.");
     }

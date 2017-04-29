@@ -1,20 +1,17 @@
 package com.fractalwrench.crazycats.data;
 
 
-import android.support.annotation.NonNull;
+import android.content.Context;
 
 import com.fractalwrench.crazycats.image.data.ImageDataRepository;
-import com.fractalwrench.crazycats.image.data.ImageDetail;
-import com.fractalwrench.crazycats.image.data.ImageSummary;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.fractalwrench.crazycats.image.data.ImageDataRepositoryImpl;
+import com.fractalwrench.crazycats.injection.DefaultSchedulers;
+import com.fractalwrench.crazycats.network.RedditApiService;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import io.reactivex.Observable;
 
 /**
  * Defines dependencies related to getting data from a Repository implementation
@@ -25,18 +22,9 @@ public class DataModule {
 
     @Provides
     @Singleton
-    ImageDataRepository repository() {
-        return new ImageDataRepository() {
-            @Override
-            public Observable<List<ImageSummary>> fetchImageSummaries() {
-                return Observable.just(new ArrayList<>());
-            }
-
-            @Override
-            public Observable<ImageDetail> fetchImageById(@NonNull String id) {
-                return Observable.just(new ImageDetail());
-            }
-        };
+    ImageDataRepository repository(RedditApiService redditApiService,
+                                   DefaultSchedulers defaultSchedulers, Context context) {
+        return new ImageDataRepositoryImpl(redditApiService, defaultSchedulers, context);
     }
 
 }
