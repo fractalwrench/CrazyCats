@@ -41,14 +41,14 @@ public class SubredditThreadResponse {
         this.preview = preview;
     }
 
-    private static class Preview {
-        private List<ImageResponse> images;
+    public static class Preview {
+        private List<ImageWrapperResponse> images;
 
-        public List<ImageResponse> getImages() {
+        public List<ImageWrapperResponse> getImages() {
             return images;
         }
 
-        public void setImages(List<ImageResponse> images) {
+        public void setImages(List<ImageWrapperResponse> images) {
             this.images = images;
         }
     }

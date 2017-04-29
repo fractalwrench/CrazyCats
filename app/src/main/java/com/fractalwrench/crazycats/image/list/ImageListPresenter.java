@@ -4,8 +4,8 @@ import android.support.annotation.NonNull;
 
 import com.fractalwrench.crazycats.common.TextUtils;
 import com.fractalwrench.crazycats.image.Presenter;
+import com.fractalwrench.crazycats.image.data.ImageData;
 import com.fractalwrench.crazycats.image.data.ImageDataRepository;
-import com.fractalwrench.crazycats.image.data.ImageSummary;
 
 import java.util.List;
 
@@ -39,8 +39,8 @@ public class ImageListPresenter extends Presenter<ImageListView> implements Imag
     /** ImageListView.CellDelegate **/
 
     @Override
-    public void onImageCellClicked(ImageSummary ImageSummary) {
-        contentView.showImageDetail(ImageSummary);
+    public void onImageCellClicked(ImageData imageData) {
+        contentView.showImageDetail(imageData);
     }
 
 
@@ -54,7 +54,7 @@ public class ImageListPresenter extends Presenter<ImageListView> implements Imag
                                                           this::handleImageFetchFailure));
     }
 
-    private void handleImageFetchSuccess(@NonNull List<ImageSummary> summaries) {
+    private void handleImageFetchSuccess(@NonNull List<ImageData> summaries) {
         if (summaries.isEmpty() && !TextUtils.isEmpty(searchTerm)) {
             String msg = String.format("No Images found matching '%s'", searchTerm);
             contentView.showError(msg);

@@ -4,11 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.fractalwrench.crazycats.image.data.ImageData;
 import com.fractalwrench.crazycats.image.data.ImageDataRepository;
-import com.fractalwrench.crazycats.image.data.ImageSummary;
 import com.fractalwrench.crazycats.injection.DefaultSchedulers;
-import com.fractalwrench.crazycats.resource.JsonResourceReader;
-import com.fractalwrench.crazycats.resource.ResourcePaths;
-import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -23,26 +19,24 @@ public class MockSuccessRepository implements ImageDataRepository {
 
     private final DefaultSchedulers schedulers;
     private final ImageData imageData;
-    private final List<ImageSummary> summaryList;
 
     public MockSuccessRepository(DefaultSchedulers schedulers) throws IOException {
         this.schedulers = schedulers;
-        Moshi moshi = new Moshi.Builder().build();
+        imageData = generateFakeData();
+    }
 
-        JsonResourceReader<ImageSummary> summaryReader
-                = new JsonResourceReader<>(moshi, ImageSummary.class);
-
-        JsonResourceReader<ImageData> detailReader
-                = new JsonResourceReader<>(moshi, ImageData.class);
-
-        ImageSummary summary = summaryReader.readResourceAsJson(ResourcePaths.IMAGE_SUMMARY);
-        summaryList = Collections.singletonList(summary);
-        imageData = detailReader.readResourceAsJson(ResourcePaths.IMAGE_DETAIL);
+    private ImageData generateFakeData() {
+        ImageData imageData = new ImageData();
+        imageData.setId("testId");
+        imageData.setImageUrl("https://i.redd.it/yfqgm6yycauy.jpg");
+        imageData.setThumbnailUrl("https://a.thumbs.redditmedia.com/przYHKLLiwj_RKcYpd3NL08pLAbO-dPVYaalv2TZ4t4.jpg");
+        imageData.setTitle("My Awesome Cat");
+        return imageData;
     }
 
     @Override
-    public Observable<List<ImageSummary>> fetchImageSummaries() {
-        return Observable.just(summaryList)
+    public Observable<List<ImageData>> fetchImageSummaries() {
+        return Observable.just(Collections.singletonList(imageData))
                          .compose(schedulers::apply);
     }
 

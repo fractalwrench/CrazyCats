@@ -6,7 +6,7 @@ public class SubredditListingResponse {
 
     private ListingData data;
 
-    private static class ListingData {
+    public static class ListingData {
         private List<ListingChildren> children;
 
         public List<ListingChildren> getChildren() {
@@ -18,7 +18,7 @@ public class SubredditListingResponse {
         }
     }
 
-    private static class ListingChildren {
+    public static class ListingChildren {
         private List<SubredditThreadResponse> data;
 
         public List<SubredditThreadResponse> getData() {

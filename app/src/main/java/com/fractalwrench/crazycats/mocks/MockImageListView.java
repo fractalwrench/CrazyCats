@@ -3,14 +3,14 @@ package com.fractalwrench.crazycats.mocks;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.fractalwrench.crazycats.image.data.ImageSummary;
+import com.fractalwrench.crazycats.image.data.ImageData;
 import com.fractalwrench.crazycats.image.list.ImageListView;
 
 import java.util.List;
 
 public class MockImageListView implements ImageListView {
 
-    public List<ImageSummary> content;
+    public List<ImageData> content;
     public String errorMessage;
 
     @Override
@@ -19,7 +19,7 @@ public class MockImageListView implements ImageListView {
     }
 
     @Override
-    public void showContent(@NonNull List<ImageSummary> content) {
+    public void showContent(@NonNull List<ImageData> content) {
         this.content = content;
     }
 
@@ -34,7 +34,7 @@ public class MockImageListView implements ImageListView {
     }
 
     @Override
-    public void showImageDetail(ImageSummary ImageSummary) {
+    public void showImageDetail(ImageData ImageData) {
 
     }
 }
