@@ -1,11 +1,34 @@
 package com.fractalwrench.crazycats.image.data;
 
+import com.fractalwrench.crazycats.network.responses.SubredditThreadResponse;
+
+import java.util.Comparator;
+
 public class ImageData {
+
+    public static final Comparator<ImageData> COMPARATOR
+            = (lhs, rhs) -> lhs.getTitle().compareTo(rhs.getTitle());
+    public static final int THUMBNAIL_SIZE_THRESHOLD = 350;
 
     private String id;
     private String imageUrl;
     private String thumbnailUrl;
     private String title;
+
+    public ImageData() {
+    }
+
+    public ImageData(String id, String imageUrl, String thumbnailUrl, String title) {
+        this.id = id;
+        this.imageUrl = imageUrl;
+        this.thumbnailUrl = thumbnailUrl;
+        this.title = title;
+    }
+
+    public static ImageData valueOf(SubredditThreadResponse r) {
+        return new ImageData(r.getId(), r.getUrl(), r.getThumbnailPreview(r), r.getTitle());
+    }
+
 
     public String getId() {
         return id;

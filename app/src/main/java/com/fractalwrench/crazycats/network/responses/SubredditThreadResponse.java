@@ -1,6 +1,9 @@
 package com.fractalwrench.crazycats.network.responses;
 
+import java.util.Collections;
 import java.util.List;
+
+import static com.fractalwrench.crazycats.image.data.ImageData.THUMBNAIL_SIZE_THRESHOLD;
 
 public class SubredditThreadResponse {
 
@@ -39,6 +42,38 @@ public class SubredditThreadResponse {
 
     public void setPreview(Preview preview) {
         this.preview = preview;
+    }
+
+    public String getThumbnailPreview(SubredditThreadResponse r) {
+        String previewUrl = url; // default image if no thumbnail available
+
+        if (preview != null) {
+            List<ImageWrapperResponse> images = preview.getImages();
+
+            if (images != null && !images.isEmpty()) {
+                ImageWrapperResponse wrapperResponse = images.get(0);
+                previewUrl = getThumbnailUrl(previewUrl, wrapperResponse);
+            }
+        }
+        return previewUrl;
+    }
+
+    public static String getThumbnailUrl(String url, ImageWrapperResponse wrapperResponse) {
+        List<ImageResponse> resolutions = wrapperResponse.getResolutions();
+
+        if (resolutions != null && !resolutions.isEmpty()) {
+            Collections.sort(resolutions, (lhs, rhs) -> lhs.getWidth() - rhs.getWidth());
+
+            // TODO production app would use displayMetrics rather than constant size
+
+            for (ImageResponse resolution : resolutions) {
+                if (resolution.getWidth() >= THUMBNAIL_SIZE_THRESHOLD) {
+                    url = url.replaceAll("&amp;", "&");
+                    break;
+                }
+            }
+        }
+        return url;
     }
 
     public static class Preview {

@@ -9,7 +9,6 @@ import com.fractalwrench.crazycats.network.RedditApiService;
 import com.fractalwrench.crazycats.network.responses.SubredditListingResponse;
 import com.fractalwrench.crazycats.network.responses.SubredditThreadResponse;
 
-import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -31,24 +30,28 @@ public class ImageDataRepositoryImpl implements ImageDataRepository {
     public Observable<List<ImageData>> fetchImageSummaries() {
         return redditApiService.getSubredditListing(subredditPath)
                                .compose(this::mapSubredditThreads)
-                               .map(response -> Collections.singletonList(new ImageData()))
+                               .map(ImageData::valueOf)
+                               .toSortedList(ImageData.COMPARATOR)
+                               .toObservable()
                                .compose(defaultSchedulers::apply);
     }
 
     @Override
     public Observable<ImageData> fetchImageById(@NonNull String id) {
-        return Observable.empty(); // TODO impl
+        return fetchImageSummaries()
+                .flatMapIterable(data -> data)
+                .filter(imageData -> id.equals(imageData.getId()))
+                .firstOrError()
+                .toObservable();
     }
 
-    private Observable<List<SubredditThreadResponse>> mapSubredditThreads(
+    private Observable<SubredditThreadResponse> mapSubredditThreads(
             Observable<SubredditListingResponse> observable) {
 
         return observable.map(SubredditListingResponse::getData)
                          .map(SubredditListingResponse.ListingData::getChildren)
-                         .flatMapIterable(listingChildrens -> listingChildrens)
-                         .map(SubredditListingResponse.ListingChildren::getData)
-                         .toList()
-                         .toObservable();
+                         .flatMapIterable(children -> children)
+                         .map(SubredditListingResponse.ListingChildren::getData);
     }
 
 }

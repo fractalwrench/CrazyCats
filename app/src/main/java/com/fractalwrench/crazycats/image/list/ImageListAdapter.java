@@ -1,5 +1,6 @@
 package com.fractalwrench.crazycats.image.list;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.fractalwrench.crazycats.R;
 import com.fractalwrench.crazycats.image.data.ImageData;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +46,17 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListViewHolder> 
     @Override
     public void onBindViewHolder(ImageListViewHolder holder, int position) {
         ImageData imageData = items.get(position);
+        Context context = holder.itemView.getContext();
         holder.itemView.setTag(position);
+
+        Picasso.with(context)
+                .setLoggingEnabled(true);
+
+        Picasso.with(context)
+               .load(imageData.getThumbnailUrl())
+               .placeholder(R.drawable.leak_canary_icon) // TODO replace
+               .error(R.mipmap.ic_launcher)
+               .into(holder.imageView);
     }
 
     @Override
