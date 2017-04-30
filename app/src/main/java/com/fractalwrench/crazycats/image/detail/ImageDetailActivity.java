@@ -54,9 +54,6 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
         super.onCreate(savedInstanceState);
         imageDetailComponent = getAppComponent().plus(new ImageDetailModule());
         imageDetailComponent.inject(this);
-
-        // see https://github.com/chrisbanes/PhotoView/issues/484
-        photoView.setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
 
     @Override
