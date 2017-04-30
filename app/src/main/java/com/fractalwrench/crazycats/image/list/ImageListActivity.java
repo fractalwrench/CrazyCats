@@ -18,6 +18,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Displays a searchable list of Images, and allows the user to select an item to view in more
@@ -74,6 +75,11 @@ public class ImageListActivity extends BaseActivity implements ImageListView {
 
 
     /** ImageListView **/
+
+    @OnClick(R.id.image_list_err)
+    void onErrorClicked() {
+        presenter.fetchImageSuggestions();
+    }
 
 
     @Override

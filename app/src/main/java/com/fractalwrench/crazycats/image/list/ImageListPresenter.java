@@ -44,16 +44,14 @@ public class ImageListPresenter extends Presenter<ImageListView> implements Imag
         contentView.showImageDetail(imageData);
     }
 
-
-    /** Private impl **/
-
-
-    private void fetchImageSuggestions() {
+    void fetchImageSuggestions() {
         contentView.showProgress();
         compositeDisposable.add(repository.fetchImageSummaries()
                                           .subscribe(this::handleImageFetchSuccess,
-                                                          this::handleImageFetchFailure));
+                                                     this::handleImageFetchFailure));
     }
+
+    /** Private impl **/
 
     private void handleImageFetchSuccess(@NonNull List<ImageData> summaries) {
         if (summaries.isEmpty() && !TextUtils.isEmpty(searchTerm)) {
@@ -68,7 +66,7 @@ public class ImageListPresenter extends Presenter<ImageListView> implements Imag
     private void handleImageFetchFailure(Throwable throwable) {
         Log.e(getClass().getName(), "Failed to fetch image", throwable);
         // TODO would change message (and localise) depending on error condition in prod app
-        contentView.showError("Failed to fetch Image list. Please check your connection.");
+        contentView.showError("Failed to fetch your cats images! Tap here to retry.");
     }
 
 }
