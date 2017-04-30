@@ -76,11 +76,11 @@ public class ImageListActivity extends BaseActivity implements ImageListView {
 
     /** ImageListView **/
 
+
     @OnClick(R.id.image_list_err)
     void onErrorClicked() {
         presenter.fetchImageSuggestions();
     }
-
 
     @Override
     public void setDelegate(@Nullable CellDelegate delegate) {

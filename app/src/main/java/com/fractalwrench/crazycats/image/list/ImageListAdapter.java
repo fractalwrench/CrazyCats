@@ -23,7 +23,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListViewHolder> 
     private LayoutInflater inflater;
     private ImageListView.CellDelegate delegate;
 
-    public ImageListAdapter() {
+    ImageListAdapter() {
         this.items = new ArrayList<>();
     }
 

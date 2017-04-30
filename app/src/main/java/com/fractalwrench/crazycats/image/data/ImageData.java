@@ -4,9 +4,12 @@ import com.fractalwrench.crazycats.network.responses.SubredditThreadResponse;
 
 import java.util.Comparator;
 
+/**
+ * Model for a remote image source (thumbnail plus full-res URL) and its metadata.
+ */
 public class ImageData {
 
-    public static final Comparator<ImageData> COMPARATOR
+    static final Comparator<ImageData> COMPARATOR
             = (lhs, rhs) -> lhs.getTitle().compareTo(rhs.getTitle());
 
     private String id;
@@ -24,10 +27,9 @@ public class ImageData {
         this.title = title;
     }
 
-    public static ImageData valueOf(SubredditThreadResponse r) {
-        return new ImageData(r.getId(), r.getUrl(), r.getThumbnailPreview(r), r.getTitle());
+    static ImageData valueOf(SubredditThreadResponse r) {
+        return new ImageData(r.getId(), r.getUrl(), r.getThumbnailPreview(), r.getTitle());
     }
-
 
     public String getId() {
         return id;

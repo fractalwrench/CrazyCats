@@ -44,7 +44,7 @@ public class SubredditThreadResponse {
         this.preview = preview;
     }
 
-    public String getThumbnailPreview(SubredditThreadResponse r) {
+    public String getThumbnailPreview() {
         String previewUrl = url; // default image if no thumbnail available
 
         if (preview != null) {
@@ -58,7 +58,7 @@ public class SubredditThreadResponse {
         return previewUrl;
     }
 
-    public static String getThumbnailUrl(String url, ImageWrapperResponse wrapperResponse) {
+    private static String getThumbnailUrl(String url, ImageWrapperResponse wrapperResponse) {
         List<ImageResponse> resolutions = wrapperResponse.getResolutions();
 
         if (resolutions != null && !resolutions.isEmpty()) {

@@ -20,7 +20,7 @@ public class TestDependencies {
     }
 
     public static MockFailureRepository mockFailureRepository() throws IOException {
-        return new MockFailureRepository(schedulers());
+        return new MockFailureRepository();
     }
 
 }

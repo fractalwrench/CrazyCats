@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
-             android:layout_height="240dp"
+             android:layout_height="@dimen/image_cell_height"
              android:background="?android:selectableItemBackground"
              android:clickable="true"
              android:focusable="true"
@@ -23,14 +23,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="#88000000"
+        android:background="@color/textShadowBg"
         android:ellipsize="end"
         android:gravity="start"
         android:maxLines="1"
         android:minLines="1"
-        android:padding="16dp"
-        android:textColor="@android:color/white"
-        tools:text="Little Nicky test blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah"
+        android:padding="@dimen/keyline_2"
+        tools:text="Test blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah"
         />
 
 </FrameLayout>

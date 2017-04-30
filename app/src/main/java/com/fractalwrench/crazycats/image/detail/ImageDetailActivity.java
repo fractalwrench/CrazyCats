@@ -107,13 +107,13 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
                    public void onSuccess() {
                        Picasso.with(context)
                               .load(imageData.getImageUrl())
-                              .placeholder(photoView.getDrawable())
+                              .placeholder(photoView.getDrawable()) // use thumbnail as placeholder
                               .into(photoView);
                    }
 
                    @Override
                    public void onError() {
-
+                       // no-op
                    }
                });
     }

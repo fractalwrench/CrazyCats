@@ -13,5 +13,4 @@ public class MockImageListCellDelegate implements ImageListView.CellDelegate {
         this.ImageData = ImageData;
     }
 
-
 }

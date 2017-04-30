@@ -2,20 +2,18 @@ package com.fractalwrench.crazycats.image.list;
 
 import android.support.annotation.NonNull;
 
-import com.fractalwrench.crazycats.common.TextUtils;
 import com.fractalwrench.crazycats.image.Presenter;
 import com.fractalwrench.crazycats.image.data.ImageData;
 import com.fractalwrench.crazycats.image.data.ImageDataRepository;
 
-import java.util.List;
 
 /**
  * Presents a {@link ImageListView}, and responds to UI events by fetching data if needed
  */
-public class ImageListPresenter extends Presenter<ImageListView> implements ImageListView.CellDelegate {
+public class ImageListPresenter extends Presenter<ImageListView> implements
+                                                                 ImageListView.CellDelegate {
 
     private final ImageDataRepository repository;
-    private String searchTerm = "";
 
     public ImageListPresenter(ImageDataRepository repository) {
         this.repository = repository;
@@ -46,21 +44,11 @@ public class ImageListPresenter extends Presenter<ImageListView> implements Imag
     void fetchImageSuggestions() {
         contentView.showProgress();
         compositeDisposable.add(repository.fetchImageSummaries()
-                                          .subscribe(this::handleImageFetchSuccess,
+                                          .subscribe(contentView::showContent,
                                                      this::handleImageFetchFailure));
     }
 
     /** Private impl **/
-
-    private void handleImageFetchSuccess(@NonNull List<ImageData> summaries) {
-        if (summaries.isEmpty() && !TextUtils.isEmpty(searchTerm)) {
-            String msg = String.format("No Images found matching '%s'", searchTerm);
-            contentView.showError(msg);
-        }
-        else {
-            contentView.showContent(summaries);
-        }
-    }
 
     private void handleImageFetchFailure(Throwable throwable) {
         // TODO would change message (and localise) depending on error condition in prod app

@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import com.fractalwrench.crazycats.image.data.ImageData;
 import com.fractalwrench.crazycats.image.data.ImageDataRepository;
-import com.fractalwrench.crazycats.injection.DefaultSchedulers;
 
 import java.util.List;
 
@@ -14,9 +13,6 @@ import io.reactivex.Observable;
  * A repository which is guaranteed to produce an error for every call, used for testing.
  */
 public class MockFailureRepository implements ImageDataRepository {
-
-    public MockFailureRepository(DefaultSchedulers schedulers) {
-    }
 
     @Override
     public Observable<List<ImageData>> fetchImageSummaries() {

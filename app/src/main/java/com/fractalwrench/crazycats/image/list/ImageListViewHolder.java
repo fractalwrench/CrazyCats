@@ -18,7 +18,6 @@ class ImageListViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         imageView = ButterKnife.findById(itemView, R.id.image_summary_view);
         titleView = ButterKnife.findById(itemView, R.id.image_summary_cell_title);
-
     }
 
 }

@@ -31,6 +31,7 @@ public class ImageDataRepositoryImpl implements ImageDataRepository {
     @Override
     public Observable<List<ImageData>> fetchImageSummaries() {
         if (data.isEmpty()) {
+            // fetch subreddit listing response and map into ImageData
             return redditApiService.getSubredditListing(subredditPath)
                                    .compose(this::mapSubredditThreads)
                                    .map(ImageData::valueOf)
