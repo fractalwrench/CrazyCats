@@ -19,6 +19,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
+import static com.fractalwrench.crazycats.R.id.image_detail_photo_view;
+
 /**
  * Displays details about a single image, allowing the user to interact with it.
  */
@@ -33,7 +35,7 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
     @BindView(R.id.image_detail_progress) View progressView;
     @BindView(R.id.image_detail_err) TextView errorView;
     @BindView(R.id.image_detail_content) View contentView;
-    @BindView(R.id.image_detail_photo_view) ImageView photoView;
+    @BindView(image_detail_photo_view) ImageView photoView;
     @BindView(R.id.image_detail_backstory) TextView backStory;
 
     public static Intent getIntent(Context context, ImageData imageData) {
@@ -52,6 +54,9 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
         super.onCreate(savedInstanceState);
         imageDetailComponent = getAppComponent().plus(new ImageDetailModule());
         imageDetailComponent.inject(this);
+
+        // see https://github.com/chrisbanes/PhotoView/issues/484
+        photoView.setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
 
     @Override
@@ -92,6 +97,7 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
 
         final Context context = this;
 
+        // load thumbnail URL first as should already be in cache, then full image
         Picasso.with(context)
                .load(imageData.getImageUrl())
                .placeholder(R.drawable.ic_photo_black_24dp)

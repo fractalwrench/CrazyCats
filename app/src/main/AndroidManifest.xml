@@ -30,7 +30,7 @@
             android:name=".image.detail.ImageDetailActivity"
             android:label="@string/title_item_detail"
             android:parentActivityName=".image.list.ImageListActivity"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.FullScreen"
             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -24,5 +24,30 @@
         tools:text="Error"
         />
 
-    <include layout="@layout/image_detail_content"/>
+    <LinearLayout
+        android:id="@+id/image_detail_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/image_detail_photo_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/black"
+            tools:src="@drawable/ic_photo_black_24dp"
+            />
+
+        <TextView
+            android:id="@+id/image_detail_backstory"
+            style="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="6"
+            android:padding="16dp"
+            />
+    </LinearLayout>
 </ViewFlipper>
