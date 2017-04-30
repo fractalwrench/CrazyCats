@@ -99,7 +99,7 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
 
         // load thumbnail URL first as should already be in cache, then full image
         Picasso.with(context)
-               .load(imageData.getImageUrl())
+               .load(imageData.getThumbnailUrl())
                .placeholder(R.drawable.ic_photo_black_24dp)
                .error(R.drawable.ic_error_outline_black_24dp)
                .into(photoView, new Callback() {
