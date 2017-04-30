@@ -14,9 +14,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -44,9 +41,8 @@ public class ImageDataActivityTest {
         activity = rule.getActivity();
         MockSuccessRepository repository = TestDependencies.mockSuccessRepository();
 
-        repository.fetchImageById("").subscribe(ImageDetail -> {
-            this.imageData = ImageDetail;
-        });
+        repository.fetchImageById("")
+                  .subscribe(data -> this.imageData = data);
     }
 
     @Test
@@ -82,13 +78,7 @@ public class ImageDataActivityTest {
             activity.showContent(imageData);
         });
         onView(withId(R.id.image_detail_content)).check(matches(isDisplayed()));
-
-        // check data binding
-        Map<Integer, String> map = new HashMap<>();
-
-        for (Map.Entry<Integer, String> entry : map.entrySet()) {
-            onView(withId(entry.getKey())).check(matches(withText(entry.getValue())));
-        }
+        onView(withId(R.id.image_detail_backstory)).check(matches(withText(imageData.getTitle())));
     }
 
 }

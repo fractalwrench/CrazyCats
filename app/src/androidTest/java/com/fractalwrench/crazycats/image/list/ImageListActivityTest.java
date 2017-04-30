@@ -102,7 +102,7 @@ public class ImageListActivityTest {
         int position = 0;
         ImageData image = summaries.get(position);
 
-        String[] displayValues = new String[]{};
+        String[] displayValues = new String[]{image.getTitle()};
 
         for (String value : displayValues) {
             onView(withId(R.id.image_list_content)).check(

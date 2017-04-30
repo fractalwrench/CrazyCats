@@ -13,7 +13,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Defines dependencies related to getting data from a Repository implementation
+ * Declares dependencies for the mock DataRepository implementation
  */
 @Singleton
 @Module

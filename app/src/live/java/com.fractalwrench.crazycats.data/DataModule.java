@@ -14,7 +14,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Defines dependencies related to getting data from a Repository implementation
+ * Declares dependencies for the live DataRepository implementation
  */
 @Singleton
 @Module
