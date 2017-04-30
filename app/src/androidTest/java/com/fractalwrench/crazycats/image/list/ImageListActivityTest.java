@@ -5,7 +5,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.fractalwrench.crazycats.R;
-import com.fractalwrench.crazycats.image.data.ImageSummary;
+import com.fractalwrench.crazycats.image.data.ImageData;
 import com.fractalwrench.crazycats.mocks.MockImageListCellDelegate;
 import com.fractalwrench.crazycats.mocks.MockSuccessRepository;
 import com.fractalwrench.crazycats.mocks.TestDependencies;
@@ -40,7 +40,7 @@ public class ImageListActivityTest {
     @Rule public ActivityTestRule<ImageListActivity> rule = new ActivityTestRule<>(
             ImageListActivity.class, true, true);
     private ImageListActivity activity;
-    private List<ImageSummary> summaries;
+    private List<ImageData> summaries;
 
     @Before
     public void setUp() throws Exception {
@@ -100,7 +100,7 @@ public class ImageListActivityTest {
     public void testRecyclerViewCellContent() throws Throwable {
         populateContent();
         int position = 0;
-        ImageSummary image = summaries.get(position);
+        ImageData image = summaries.get(position);
 
         String[] displayValues = new String[]{};
 
@@ -114,7 +114,7 @@ public class ImageListActivityTest {
     public void testRecyclerViewClick() throws Throwable {
         MockImageListCellDelegate delegate = new MockImageListCellDelegate();
         int position = 0;
-        assertNull(delegate.imageSummary);
+        assertNull(delegate.ImageData);
 
         rule.runOnUiThread(() -> {
             activity.showContent(summaries);
@@ -122,7 +122,7 @@ public class ImageListActivityTest {
         });
 
         onView(withId(R.id.image_list_content)).perform(actionOnItemAtPosition(position, click()));
-        assertEquals(summaries.get(position), delegate.imageSummary);
+        assertEquals(summaries.get(position), delegate.ImageData);
     }
 
 }
