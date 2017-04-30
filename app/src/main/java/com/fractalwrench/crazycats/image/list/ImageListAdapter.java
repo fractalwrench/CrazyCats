@@ -6,9 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.fractalwrench.crazycats.R;
 import com.fractalwrench.crazycats.image.data.ImageData;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -54,11 +56,23 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListViewHolder> 
         Picasso.with(context)
                .cancelRequest(holder.imageView);
 
+        holder.imageView.setScaleType(ImageView.ScaleType.CENTER);
+
         Picasso.with(context)
                .load(imageData.getThumbnailUrl())
                .placeholder(R.drawable.ic_photo_black_24dp)
                .error(R.drawable.ic_error_outline_black_24dp)
-               .into(holder.imageView);
+               .into(holder.imageView, new Callback() {
+                   @Override
+                   public void onSuccess() {
+                       holder.imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                   }
+
+                   @Override
+                   public void onError() {
+
+                   }
+               });
     }
 
     @Override

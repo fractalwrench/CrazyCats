@@ -26,7 +26,6 @@ public class ImageDataRepositoryImpl implements ImageDataRepository {
         this.redditApiService = redditApiService;
         this.defaultSchedulers = defaultSchedulers;
         subredditPath = context.getString(R.string.subreddit_path);
-
     }
 
     @Override
