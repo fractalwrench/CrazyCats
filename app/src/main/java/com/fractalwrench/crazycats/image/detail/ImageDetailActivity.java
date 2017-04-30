@@ -34,6 +34,7 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
     @BindView(R.id.image_detail_err) TextView errorView;
     @BindView(R.id.image_detail_content) View contentView;
     @BindView(R.id.image_detail_photo_view) ImageView photoView;
+    @BindView(R.id.image_detail_backstory) TextView backStory;
 
     public static Intent getIntent(Context context, ImageData imageData) {
         Intent intent = new Intent(context, ImageDetailActivity.class);
@@ -71,6 +72,8 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
     protected void onStop() {
         super.onStop();
         presenter.stop();
+        Picasso.with(this)
+               .cancelRequest(photoView);
     }
 
 
@@ -85,20 +88,28 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
     @Override
     public void showContent(@NonNull ImageData imageData) {
         viewFlipper.setDisplayedChild(VIEW_CONTENT);
+        backStory.setText(imageData.getTitle());
 
-        Picasso.with(this)
-                .load(imageData.getThumbnailUrl())
-                .into(photoView, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        // load full image
-                    }
+        final Context context = this;
 
-                    @Override
-                    public void onError() {
+        Picasso.with(context)
+               .load(imageData.getImageUrl())
+               .placeholder(R.drawable.ic_photo_black_24dp)
+               .error(R.drawable.ic_error_outline_black_24dp)
+               .into(photoView, new Callback() {
+                   @Override
+                   public void onSuccess() {
+                       Picasso.with(context)
+                              .load(imageData.getImageUrl())
+                              .placeholder(photoView.getDrawable())
+                              .into(photoView);
+                   }
 
-                    }
-                });
+                   @Override
+                   public void onError() {
+
+                   }
+               });
     }
 
     @Override

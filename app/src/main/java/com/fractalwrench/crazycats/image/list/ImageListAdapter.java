@@ -52,12 +52,12 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListViewHolder> 
         holder.titleView.setText(imageData.getTitle());
 
         Picasso.with(context)
-                .setLoggingEnabled(true);
+               .cancelRequest(holder.imageView);
 
         Picasso.with(context)
                .load(imageData.getThumbnailUrl())
-               .placeholder(R.drawable.leak_canary_icon) // TODO replace
-               .error(R.mipmap.ic_launcher)
+               .placeholder(R.drawable.ic_photo_black_24dp)
+               .error(R.drawable.ic_error_outline_black_24dp)
                .into(holder.imageView);
     }
 

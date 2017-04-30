@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        tools:src="@drawable/leak_canary_icon"
+        tools:src="@drawable/ic_photo_black_24dp"
         />
 
     <TextView
@@ -26,9 +26,9 @@
         android:background="#88000000"
         android:ellipsize="end"
         android:gravity="start"
-        android:maxLines="2"
-        android:minLines="2"
-        android:padding="24dp"
+        android:maxLines="1"
+        android:minLines="1"
+        android:padding="16dp"
         android:textColor="@android:color/white"
         tools:text="Little Nicky test blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah"
         />
