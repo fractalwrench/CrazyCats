@@ -11,6 +11,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/image_detail_photo_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
     </LinearLayout>
 
 </ScrollView>

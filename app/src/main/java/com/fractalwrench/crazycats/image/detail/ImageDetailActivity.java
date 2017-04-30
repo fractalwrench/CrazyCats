@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.fractalwrench.crazycats.BaseActivity;
 import com.fractalwrench.crazycats.R;
 import com.fractalwrench.crazycats.image.data.ImageData;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
@@ -30,6 +33,7 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
     @BindView(R.id.image_detail_progress) View progressView;
     @BindView(R.id.image_detail_err) TextView errorView;
     @BindView(R.id.image_detail_content) View contentView;
+    @BindView(R.id.image_detail_photo_view) ImageView photoView;
 
     public static Intent getIntent(Context context, ImageData imageData) {
         Intent intent = new Intent(context, ImageDetailActivity.class);
@@ -81,6 +85,20 @@ public class ImageDetailActivity extends BaseActivity implements ImageDetailView
     @Override
     public void showContent(@NonNull ImageData imageData) {
         viewFlipper.setDisplayedChild(VIEW_CONTENT);
+
+        Picasso.with(this)
+                .load(imageData.getThumbnailUrl())
+                .into(photoView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        // load full image
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
     }
 
     @Override

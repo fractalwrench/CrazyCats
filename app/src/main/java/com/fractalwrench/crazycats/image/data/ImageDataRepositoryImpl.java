@@ -18,22 +18,26 @@ public class ImageDataRepositoryImpl implements ImageDataRepository {
     private final RedditApiService redditApiService;
     private final DefaultSchedulers defaultSchedulers;
     private final String subredditPath;
+    private final Observable<List<ImageData>> imageFetchObservable;
 
     public ImageDataRepositoryImpl(RedditApiService redditApiService,
                                    DefaultSchedulers defaultSchedulers, Context context) {
         this.redditApiService = redditApiService;
         this.defaultSchedulers = defaultSchedulers;
         subredditPath = context.getString(R.string.subreddit_path);
+
+        imageFetchObservable = redditApiService.getSubredditListing(subredditPath)
+                                               .compose(this::mapSubredditThreads)
+                                               .map(ImageData::valueOf)
+                                               .toSortedList(ImageData.COMPARATOR)
+                                               .toObservable()
+                                               .cache()
+                                               .compose(defaultSchedulers::apply);
     }
 
     @Override
     public Observable<List<ImageData>> fetchImageSummaries() {
-        return redditApiService.getSubredditListing(subredditPath)
-                               .compose(this::mapSubredditThreads)
-                               .map(ImageData::valueOf)
-                               .toSortedList(ImageData.COMPARATOR)
-                               .toObservable()
-                               .compose(defaultSchedulers::apply);
+        return imageFetchObservable;
     }
 
     @Override

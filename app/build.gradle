@@ -56,6 +56,9 @@ dependencies {
     // Picasso
     compile "com.squareup.picasso:picasso:$picassoVersion"
 
+    // PhotoView
+    compile "com.github.chrisbanes:PhotoView:$photoViewVersion"
+
     // Dagger dependencies
     apt "com.google.dagger:dagger-compiler:$daggerVersion"
     provided "org.glassfish:javax.annotation:$daggerJavaxVersion"
