@@ -51,21 +51,24 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListViewHolder> 
         Context context = holder.itemView.getContext();
 
         holder.itemView.setTag(position);
-        holder.titleView.setText(imageData.getTitle());
+        holder.getTitleView()
+              .setText(imageData.getTitle());
 
         Picasso.with(context)
-               .cancelRequest(holder.imageView);
+               .cancelRequest(holder.getImageView());
 
-        holder.imageView.setScaleType(ImageView.ScaleType.CENTER);
+        holder.getImageView()
+              .setScaleType(ImageView.ScaleType.CENTER);
 
         Picasso.with(context)
                .load(imageData.getThumbnailUrl())
                .placeholder(R.drawable.ic_photo_black_24dp)
                .error(R.drawable.ic_error_outline_black_24dp)
-               .into(holder.imageView, new Callback() {
+               .into(holder.getImageView(), new Callback() {
                    @Override
                    public void onSuccess() {
-                       holder.imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                       holder.getImageView()
+                             .setScaleType(ImageView.ScaleType.CENTER_CROP);
                    }
 
                    @Override
