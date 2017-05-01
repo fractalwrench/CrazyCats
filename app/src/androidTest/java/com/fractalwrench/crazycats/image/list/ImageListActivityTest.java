@@ -114,7 +114,7 @@ public class ImageListActivityTest {
     public void testRecyclerViewClick() throws Throwable {
         MockImageListCellDelegate delegate = new MockImageListCellDelegate();
         int position = 0;
-        assertNull(delegate.ImageData);
+        assertNull(delegate.getImageData());
 
         rule.runOnUiThread(() -> {
             activity.showContent(summaries);
@@ -122,7 +122,7 @@ public class ImageListActivityTest {
         });
 
         onView(withId(R.id.image_list_content)).perform(actionOnItemAtPosition(position, click()));
-        assertEquals(summaries.get(position), delegate.ImageData);
+        assertEquals(summaries.get(position), delegate.getImageData());
     }
 
 }
