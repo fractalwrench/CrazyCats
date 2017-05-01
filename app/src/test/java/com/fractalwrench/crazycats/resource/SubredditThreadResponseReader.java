@@ -25,7 +25,8 @@ public class SubredditThreadResponseReader {
         JsonResourceReader<SubredditThreadResponse> reader
                 = new JsonResourceReader<>(moshi, SubredditThreadResponse.class);
 
-        SubredditThreadResponse item = reader.readResourceAsJson(ResourcePaths.THREAD_ITEM);
+        SubredditThreadResponse item = reader.readResourceAsJson(
+                ResourcePaths.Companion.getTHREAD_ITEM());
         checkTopLevelFields(item);
         List<ImageWrapperResponse> images = checkPreviewField(item);
 

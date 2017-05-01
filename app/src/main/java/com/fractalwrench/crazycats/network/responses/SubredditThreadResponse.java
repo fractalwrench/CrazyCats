@@ -75,18 +75,6 @@ public class SubredditThreadResponse {
         return url;
     }
 
-    public static class Preview {
-        private List<ImageWrapperResponse> images;
-
-        public List<ImageWrapperResponse> getImages() {
-            return images;
-        }
-
-        public void setImages(List<ImageWrapperResponse> images) {
-            this.images = images;
-        }
-    }
-
     @Override
     public String toString() {
         return "SubredditThreadResponse{" + "id='" + id + '\'' + ", url='" + url + '\'' +
