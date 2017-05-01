@@ -39,7 +39,7 @@ public class ImageDataActivityTest {
     @Before
     public void setUp() throws Exception {
         activity = rule.getActivity();
-        MockSuccessRepository repository = TestDependencies.mockSuccessRepository();
+        MockSuccessRepository repository = TestDependencies.INSTANCE.mockSuccessRepository();
 
         repository.fetchImageById("")
                   .subscribe(data -> this.imageData = data);

@@ -20,12 +20,6 @@ class ResourceFileReaderTest {
         assertEquals(EXPECTED_OUTPUT, reader!!.readResourceAsString(FILENAME))
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    @Throws(Exception::class)
-    fun nullName() {
-        reader!!.readResourceAsString(null)
-    }
-
     @Test(expected = IOException::class)
     @Throws(Exception::class)
     fun resourceNotFound() {

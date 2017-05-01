@@ -36,7 +36,7 @@ class SubredditThreadResponseReader {
         val preview = item.preview
         assertNotNull(preview)
 
-        val images = preview.images!!
+        val images = preview!!.images!!
         assertNotNull(images)
         assertFalse(images.isEmpty())
         return images

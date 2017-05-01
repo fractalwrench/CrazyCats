@@ -7,7 +7,7 @@ import android.widget.TextView
 import butterknife.ButterKnife
 import com.fractalwrench.crazycats.R
 
-internal class ImageListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class ImageListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val imageView: ImageView = ButterKnife.findById<ImageView>(itemView, R.id.image_summary_view)
     val titleView: TextView = ButterKnife.findById<TextView>(itemView, R.id.image_summary_cell_title)

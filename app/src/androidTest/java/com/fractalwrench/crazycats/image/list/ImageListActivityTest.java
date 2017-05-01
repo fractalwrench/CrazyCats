@@ -45,7 +45,7 @@ public class ImageListActivityTest {
     @Before
     public void setUp() throws Exception {
         activity = rule.getActivity();
-        MockSuccessRepository repository = TestDependencies.mockSuccessRepository();
+        MockSuccessRepository repository = TestDependencies.INSTANCE.mockSuccessRepository();
 
         //noinspection ConstantConditions
         repository.fetchImageSummaries().subscribe(values -> this.summaries = values);

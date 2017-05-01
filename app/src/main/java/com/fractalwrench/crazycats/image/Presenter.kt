@@ -10,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
  */
 abstract class Presenter<T> {
 
-    protected var contentView: T? = null
+    var contentView: T? = null
     protected var compositeDisposable: CompositeDisposable? = null
 
     private var isPresenting = false

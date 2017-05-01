@@ -1,7 +1,6 @@
 package com.fractalwrench.crazycats.resource
 
 
-import com.fractalwrench.crazycats.common.PreConditions
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -13,14 +12,13 @@ internal class StringResourceFileReader {
 
     @Throws(IOException::class)
     fun readResourceAsString(resName: String): String {
-        PreConditions.checkNonNull(resName)
         val inputStream = javaClass.classLoader
                 .getResourceAsStream(resName) ?: throw IOException(String.format("Failed to find resource '%s'", resName))
 
         inputStream.use { inputStream ->
             val br = BufferedReader(InputStreamReader(inputStream))
 
-            var line: String
+            var line: String?
             val sb = StringBuilder()
 
             line = br.readLine()
