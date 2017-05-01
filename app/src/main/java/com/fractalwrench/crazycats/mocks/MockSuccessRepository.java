@@ -26,12 +26,10 @@ public class MockSuccessRepository implements ImageDataRepository {
     }
 
     private ImageData generateFakeData() {
-        ImageData imageData = new ImageData();
-        imageData.setId("testId");
-        imageData.setImageUrl("https://i.redd.it/yfqgm6yycauy.jpg");
-        imageData.setThumbnailUrl("https://a.thumbs.redditmedia.com/przYHKLLiwj_RKcYpd3NL08pLAbO-dPVYaalv2TZ4t4.jpg");
-        imageData.setTitle("My Awesome Cat");
-        return imageData;
+        return new ImageData("testId", "https://i.redd.it/yfqgm6yycauy.jpg",
+                                            "https://a.thumbs.redditmedia" +
+                                            ".com/przYHKLLiwj_RKcYpd3NL08pLAbO-dPVYaalv2TZ4t4.jpg",
+                             "My Awesome Cat");
     }
 
     @Override
