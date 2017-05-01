@@ -2,9 +2,9 @@ package com.fractalwrench.crazycats.image;
 
 import android.support.annotation.NonNull;
 
-import io.reactivex.disposables.CompositeDisposable;
+import com.fractalwrench.crazycats.common.PreConditions;
 
-import static com.fractalwrench.crazycats.common.PreConditions.checkNonNull;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Presenters are responsible for responding to user interactions from a View, by
@@ -21,7 +21,7 @@ public abstract class Presenter<T> {
      * Notify the presenter that it should start telling its View how to display itself.
      */
     public void start(@NonNull T contentView) {
-        checkNonNull(contentView);
+        PreConditions.Companion.checkNonNull(contentView);
         compositeDisposable = new CompositeDisposable();
 
         if (isPresenting) {

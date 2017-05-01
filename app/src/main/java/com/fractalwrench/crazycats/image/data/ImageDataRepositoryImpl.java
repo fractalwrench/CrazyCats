@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import com.fractalwrench.crazycats.R;
 import com.fractalwrench.crazycats.injection.DefaultSchedulers;
 import com.fractalwrench.crazycats.network.RedditApiService;
+import com.fractalwrench.crazycats.network.responses.ListingChildren;
+import com.fractalwrench.crazycats.network.responses.ListingData;
 import com.fractalwrench.crazycats.network.responses.SubredditListingResponse;
 import com.fractalwrench.crazycats.network.responses.SubredditThreadResponse;
 
@@ -58,9 +60,9 @@ public class ImageDataRepositoryImpl implements ImageDataRepository {
             Observable<SubredditListingResponse> observable) {
 
         return observable.map(SubredditListingResponse::getData)
-                         .map(SubredditListingResponse.ListingData::getChildren)
+                         .map(ListingData::getChildren)
                          .flatMapIterable(children -> children)
-                         .map(SubredditListingResponse.ListingChildren::getData);
+                         .map(ListingChildren::getData);
     }
 
 }

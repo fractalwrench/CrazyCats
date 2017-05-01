@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 class StringResourceFileReader {
 
     String readResourceAsString(String resName) throws IOException {
-        PreConditions.checkNonNull(resName);
+        PreConditions.Companion.checkNonNull(resName);
         InputStream inputStream = getClass().getClassLoader()
                                             .getResourceAsStream(resName);
 
