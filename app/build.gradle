@@ -1,6 +1,17 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: "com.neenbedankt.android-apt"
 apply plugin: "me.tatarka.retrolambda"
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
 
 android {
 
@@ -93,5 +104,9 @@ dependencies {
         exclude group: "com.android.support", module: "support-v4"
         exclude module: "recyclerview-v7"
     }
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
+}
+repositories {
+    mavenCentral()
 }

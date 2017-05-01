@@ -47,5 +47,6 @@ ext {
     okhttpLoggerVersion = '3.6.0'
     picassoVersion = '2.5.2'
     photoViewVersion = '2.0.0'
+    kotlin_version = '1.1.2-2'
 
 }
