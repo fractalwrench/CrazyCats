@@ -13,11 +13,7 @@ import java.io.IOException
  */
 class NetworkAvailabilityInterceptor internal constructor(context: Context) : Interceptor {
 
-    private val cm: ConnectivityManager
-
-    init {
-        this.cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    }
+    private val cm: ConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {

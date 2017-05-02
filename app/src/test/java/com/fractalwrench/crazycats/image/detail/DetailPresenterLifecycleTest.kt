@@ -6,8 +6,11 @@ import com.fractalwrench.crazycats.mocks.TestDependencies
 
 class DetailPresenterLifecycleTest : PresenterLifecycleTest<ImageDetailView, ImageDetailPresenter>() {
 
-    override val contentViewPresenter: ImageDetailPresenter
-        get() = ImageDetailPresenter(TestDependencies.mockSuccessRepository())
+    override fun getContentViewPresenter(): ImageDetailPresenter {
+        val presenter = ImageDetailPresenter(TestDependencies.mockSuccessRepository())
+        presenter.setId("")
+        return presenter
+    }
 
     override val contentView: ImageDetailView
         get() = MockImageDetailView()

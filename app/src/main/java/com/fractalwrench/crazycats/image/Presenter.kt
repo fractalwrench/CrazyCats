@@ -1,7 +1,5 @@
 package com.fractalwrench.crazycats.image
 
-import com.fractalwrench.crazycats.common.PreConditions
-
 import io.reactivex.disposables.CompositeDisposable
 
 /**
@@ -19,16 +17,12 @@ abstract class Presenter<T> {
      * Notify the presenter that it should start telling its View how to display itself.
      */
     open fun start(contentView: T) {
-        PreConditions.checkNonNull(contentView)
         compositeDisposable = CompositeDisposable()
 
         if (isPresenting) {
             throw IllegalStateException("Already presenting, please call stop() first")
         }
 
-        if (contentView == null) {
-            throw IllegalArgumentException("Presenter View cannot be null")
-        }
         this.contentView = contentView
         isPresenting = true
     }

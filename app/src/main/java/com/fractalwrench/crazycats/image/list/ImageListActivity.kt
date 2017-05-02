@@ -41,14 +41,14 @@ class ImageListActivity : BaseActivity(), ImageListView {
 
     override fun onStart() {
         super.onStart()
-        presenter!!.start(this)
-        imageListAdapter!!.setDelegate(delegate)
+        presenter.start(this)
+        imageListAdapter.setDelegate(delegate)
     }
 
     override fun onStop() {
         super.onStop()
-        presenter!!.stop()
-        imageListAdapter!!.setDelegate(null)
+        presenter.stop()
+        imageListAdapter.setDelegate(null)
     }
 
 
@@ -57,12 +57,12 @@ class ImageListActivity : BaseActivity(), ImageListView {
 
     @OnClick(R.id.image_list_err)
     internal fun onErrorClicked() {
-        presenter!!.fetchImageSuggestions()
+        presenter.fetchImageSuggestions()
     }
 
     override fun setDelegate(delegate: ImageListView.CellDelegate?) {
         this.delegate = delegate
-        imageListAdapter!!.setDelegate(delegate)
+        imageListAdapter.setDelegate(delegate)
     }
 
     override fun showProgress() {
@@ -71,8 +71,8 @@ class ImageListActivity : BaseActivity(), ImageListView {
 
     override fun showContent(content: List<ImageData>) {
         image_list_root!!.displayedChild = VIEW_CONTENT
-        imageListAdapter!!.updateImages(content)
-        imageListAdapter!!.notifyDataSetChanged()
+        imageListAdapter.updateImages(content)
+        imageListAdapter.notifyDataSetChanged()
     }
 
     override fun showError(errorMessage: String) {

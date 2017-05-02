@@ -16,7 +16,7 @@ class TextUtils private constructor() {
          * @return true if empty
          */
         fun isEmpty(text: CharSequence?): Boolean {
-            return text == null || text.length == 0
+            return text == null || text.isEmpty()
         }
     }
 

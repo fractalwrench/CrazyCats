@@ -24,19 +24,14 @@ abstract class PresenterLifecycleTest<V, out P : Presenter<V>> {
     @Before
     @Throws(IOException::class)
     fun setup() {
-        presenter = contentViewPresenter
+        presenter = getContentViewPresenter()
         assertNotNull(presenter)
     }
 
     /**
      * Supply the Presenter to be tested
      */
-    protected abstract val contentViewPresenter: P
-
-    @Test(expected = IllegalArgumentException::class)
-    fun testNullView() {
-        presenter!!.start(null!!)
-    }
+    protected abstract fun getContentViewPresenter(): P
 
     @Test
     fun testStartStop() {

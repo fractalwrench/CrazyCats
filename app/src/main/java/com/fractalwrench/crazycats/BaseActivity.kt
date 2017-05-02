@@ -32,7 +32,7 @@ abstract class BaseActivity : AppCompatActivity() {
             if (application !is CrazyCatsApp) {
                 throw ClassCastException("Application class must implement CrazyCatsApp!")
             } else {
-                return application.appComponent!!
+                return application.appComponent
             }
         }
 
