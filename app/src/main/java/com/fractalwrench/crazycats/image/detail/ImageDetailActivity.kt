@@ -16,12 +16,10 @@ import javax.inject.Inject
  */
 class ImageDetailActivity : BaseActivity(), ImageDetailView {
 
+    override val layoutResId = R.layout.activity_image_detail
+
     private var imageDetailComponent: ImageDetailComponent? = null
     @Inject lateinit var presenter: ImageDetailPresenter
-
-    override fun getLayoutResId(): Int {
-        return R.layout.activity_image_detail
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +35,13 @@ class ImageDetailActivity : BaseActivity(), ImageDetailView {
     override fun onStart() {
         super.onStart()
         val summaryId = intent.getStringExtra(KEY_IMAGE_ID)
-        presenter!!.setId(summaryId)
-        presenter!!.start(this)
+        presenter.setId(summaryId)
+        presenter.start(this)
     }
 
     override fun onStop() {
         super.onStop()
-        presenter!!.stop()
+        presenter.stop()
         Picasso.with(this)
                 .cancelRequest(image_detail_photo_view)
     }
@@ -53,24 +51,24 @@ class ImageDetailActivity : BaseActivity(), ImageDetailView {
 
 
     override fun showProgress() {
-        image_detail_root!!.displayedChild = BaseActivity.VIEW_PROGRESS
+        image_detail_root!!.displayedChild = VIEW_PROGRESS
     }
 
-    override fun showContent(imageData: ImageData) {
-        image_detail_root!!.displayedChild = BaseActivity.VIEW_CONTENT
-        image_detail_backstory!!.text = imageData.title
+    override fun showContent(content: ImageData) {
+        image_detail_root!!.displayedChild = VIEW_CONTENT
+        image_detail_backstory!!.text = content.title
 
         val context = this
 
         // load thumbnail URL first as should already be in cache, then full image
         Picasso.with(context)
-                .load(imageData.thumbnailUrl)
+                .load(content.thumbnailUrl)
                 .placeholder(R.drawable.ic_photo_black_24dp)
                 .error(R.drawable.ic_error_outline_black_24dp)
                 .into(image_detail_photo_view!!, object : Callback {
                     override fun onSuccess() {
                         Picasso.with(context)
-                                .load(imageData.imageUrl)
+                                .load(content.imageUrl)
                                 .placeholder(image_detail_photo_view!!.drawable) // use thumbnail as placeholder
                                 .into(image_detail_photo_view)
                     }
@@ -82,7 +80,7 @@ class ImageDetailActivity : BaseActivity(), ImageDetailView {
     }
 
     override fun showError(errorMessage: String) {
-        image_detail_root!!.displayedChild = BaseActivity.VIEW_ERR
+        image_detail_root!!.displayedChild = VIEW_ERR
         image_detail_err!!.text = errorMessage
     }
 

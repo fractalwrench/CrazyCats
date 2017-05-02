@@ -16,16 +16,14 @@ import javax.inject.Inject
  */
 class ImageListActivity : BaseActivity(), ImageListView {
 
+    override val layoutResId = R.layout.activity_image_list
+
     private var imageListComponent: ImageListComponent? = null
     @Inject lateinit var presenter: ImageListPresenter
     @Inject lateinit var layoutManager: RecyclerView.LayoutManager
     @Inject lateinit var imageListAdapter: ImageListAdapter
 
     private var delegate: ImageListView.CellDelegate? = null
-
-    override fun getLayoutResId(): Int {
-        return R.layout.activity_image_list
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,17 +66,17 @@ class ImageListActivity : BaseActivity(), ImageListView {
     }
 
     override fun showProgress() {
-        image_list_root!!.displayedChild = BaseActivity.VIEW_PROGRESS
+        image_list_root!!.displayedChild = VIEW_PROGRESS
     }
 
     override fun showContent(content: List<ImageData>) {
-        image_list_root!!.displayedChild = BaseActivity.VIEW_CONTENT
+        image_list_root!!.displayedChild = VIEW_CONTENT
         imageListAdapter!!.updateImages(content)
         imageListAdapter!!.notifyDataSetChanged()
     }
 
     override fun showError(errorMessage: String) {
-        image_list_root!!.displayedChild = BaseActivity.VIEW_ERR
+        image_list_root!!.displayedChild = VIEW_ERR
         image_list_err!!.text = errorMessage
     }
 

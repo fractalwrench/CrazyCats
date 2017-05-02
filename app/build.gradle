@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: "com.neenbedankt.android-apt"
+apply plugin: 'kotlin-kapt'
+apply plugin: "com.neenbedankt.android-apt" // TODO remove
 apply plugin: "me.tatarka.retrolambda"
 
 buildscript {
@@ -71,7 +72,7 @@ dependencies {
     compile "com.github.chrisbanes:PhotoView:$photoViewVersion"
 
     // Dagger dependencies
-    apt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     provided "org.glassfish:javax.annotation:$daggerJavaxVersion"
     compile "com.google.dagger:dagger:$daggerVersion"
 

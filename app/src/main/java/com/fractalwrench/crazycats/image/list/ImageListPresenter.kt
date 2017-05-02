@@ -17,20 +17,18 @@ class ImageListPresenter(private val repository: ImageDataRepository) : Presente
     }
 
     override fun stop() {
-        if (contentView != null) {
-            contentView!!.setDelegate(null)
-        }
+        contentView?.setDelegate(null)
         super.stop()
     }
 
     /** ImageListView.CellDelegate  */
 
     override fun onImageCellClicked(imageData: ImageData) {
-        contentView!!.showImageDetail(imageData)
+        contentView?.showImageDetail(imageData)
     }
 
     fun fetchImageSuggestions() {
-        contentView!!.showProgress()
+        contentView?.showProgress()
         compositeDisposable?.add(repository.fetchImageSummaries()
                 .subscribe({ contentView!!.showContent(it) },
                         { this.handleImageFetchFailure(it) }))

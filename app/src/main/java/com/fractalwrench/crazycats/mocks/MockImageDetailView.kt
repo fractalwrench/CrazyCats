@@ -13,8 +13,8 @@ class MockImageDetailView : ImageDetailView {
 
     }
 
-    override fun showContent(imageData: ImageData) {
-        this.imageData = imageData
+    override fun showContent(content: ImageData) {
+        this.imageData = content
     }
 
     override fun showError(errorMessage: String) {
